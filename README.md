@@ -55,7 +55,7 @@ Using it
 
 Once loaded it register a stats-pusher, an alarm action and a hook.
 
-For pushing stats to the ganglia server 192.168.173.22:5555
+For pushing stats to the ganglia server 239.2.11.71:8649
 
 just use
 
