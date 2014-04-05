@@ -47,8 +47,8 @@ static int ganglia_metric(struct ganglia_config *gc, struct uwsgi_metric *um) {
 	if (xdr_uint(ub, 128)) return -1;
 	if (xdr_str(ub, gc->host, gc->host_len)) return -1;
 	if (xdr_str(ub, um->name, um->name_len)) return -1;
-	// assume the host is spoofed
-	if (xdr_uint(ub, 1)) return -1;
+	// assume the host is not spoofed
+	if (xdr_uint(ub, 0)) return -1;
 	if (xdr_str(ub, "double", 6)) return -1;
 	if (xdr_str(ub, um->name, um->name_len)) return -1;
 	if (xdr_str(ub, "", 0)) return -1;
@@ -75,7 +75,7 @@ static int ganglia_metric(struct ganglia_config *gc, struct uwsgi_metric *um) {
 	if (xdr_uint(ub, 128+5)) return -1;
 	if (xdr_str(ub, gc->host, gc->host_len)) return -1;
 	if (xdr_str(ub, um->name, um->name_len)) return -1;
-	if (xdr_uint(ub, 1)) return -1;
+	if (xdr_uint(ub, 0)) return -1;
 	if (xdr_str(ub, "%%s", 0)) return -1;
 	char *num64 = uwsgi_64bit2str(*um->value);
 	int ret = xdr_str(ub, num64, strlen(num64));
